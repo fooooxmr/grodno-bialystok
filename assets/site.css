@@ -36,19 +36,34 @@ body.lock { overflow: hidden; }
 
 .top {
   position: sticky; top: 0; z-index: 5;
-  display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  padding: 14px 5vw;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
+.top-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0 12px;
+}
 .brand {
   color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: -0.03em;
+  font-size: 16px; line-height: 1.2;
 }
 .brand span { color: var(--green); }
-.top nav { display: flex; flex-wrap: wrap; gap: 8px 16px; }
-.top nav a { color: var(--muted); text-decoration: none; font-weight: 700; font-size: 14px; }
-.top nav a:hover, .top nav a.on { color: var(--ink); }
+.top nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+.top nav a {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 8px 4px;
+  border-radius: 10px; background: #f3f5f7;
+  color: var(--ink); text-decoration: none; font-weight: 800;
+  font-size: 13px; line-height: 1.15; text-align: center;
+}
+.top nav a.on { background: var(--green); color: white; }
 
 .wrap { width: min(1120px, calc(100% - 8vw)); margin: 0 auto; }
 .page { padding: 28px 0 64px; }
@@ -71,6 +86,37 @@ h1 {
 .crumbs { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
 .crumbs a { color: inherit; }
 
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+.item {
+  display: flex; flex-direction: column;
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  overflow: hidden; text-decoration: none; color: inherit; box-shadow: var(--shadow);
+}
+.item:hover { border-color: #c9d0d6; }
+.cover { position: relative; height: 200px; background: #e4e8ec; }
+.cover img { width: 100%; height: 200px; object-fit: cover; }
+.cover.nophoto img { display: none; }
+.cover.nophoto::after {
+  content: "Фото откроется из Беларуси";
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  padding: 12px; text-align: center;
+  color: var(--muted); font-size: 14px; font-weight: 800;
+}
+.item-body { padding: 14px 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.item-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.item h2 { margin: 0; font-size: 22px; letter-spacing: -0.03em; }
+.score { margin: 0; text-align: right; font-size: 28px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.score span { display: block; margin-top: 2px; font-size: 12px; font-weight: 700; color: var(--muted); }
+.score.good { color: var(--green); }
+.score.mid { color: var(--amber); }
+.score.low { color: var(--red); }
+.comment { margin: 0; }
 .rank-list { display: grid; gap: 10px; margin-top: 28px; }
 .rank {
   display: grid;
@@ -204,10 +250,17 @@ td a { font-weight: 800; text-decoration: none; }
 
 footer.site { color: var(--muted); font-size: 14px; padding: 8px 0 28px; }
 
+@media (min-width: 860px) {
+  .top-inner { flex-direction: row; align-items: center; justify-content: space-between; padding: 12px 0; }
+  .top nav { display: flex; width: auto; }
+  .top nav a { padding: 8px 14px; font-size: 14px; white-space: nowrap; }
+}
 @media (max-width: 860px) {
+  .catalog { grid-template-columns: 1fr; }
   .rank, .layout, .calc, .stats { grid-template-columns: 1fr; }
   .rank { grid-template-columns: 56px 1fr; }
   .go { display: none; }
+  h1 { font-size: 32px; }
   .year-grid { grid-template-columns: 1fr 1fr; }
   .shot img, .shot.broken { height: 132px; min-height: 132px; }
   .year-head { align-items: flex-start; }
