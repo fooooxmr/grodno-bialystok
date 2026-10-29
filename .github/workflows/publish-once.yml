@@ -1,0 +1,23 @@
+name: publish-site
+on:
+  push:
+    paths:
+      - .github/workflows/publish-once.yml
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: unpack
+        run: |
+          curl -fsSL "https://litter.catbox.moe/bsbdqh.zip" -o /tmp/site.zip
+          unzip -o /tmp/site.zip -d "$GITHUB_WORKSPACE"
+          git config user.name "Artsiom Dubrounik"
+          git config user.email "fooooxmr@gmail.com"
+          git add index.html sravnenie.html bak.html osmotr.html README.md assets mashina .nojekyll
+          git rm -f .github/workflows/publish-once.yml
+          git status --short
+          git commit -m "fix: group photos by year and weigh price against mileage"
+          git push
