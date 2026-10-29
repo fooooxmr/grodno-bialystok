@@ -4,8 +4,8 @@
 
 Репозиторий: https://github.com/fooooxmr/grodno-bialystok
 
-Страница, которая открывается сразу: https://cdn.jsdelivr.net/gh/fooooxmr/grodno-bialystok@main/index.html
+Сайт: https://fooooxmr.github.io/grodno-bialystok/
 
-Адрес GitHub Pages https://fooooxmr.github.io/grodno-bialystok/ заработает, когда в настройках репозитория включён Pages: ветка `main`, папка `/` (корень).
+Адрес откроется, когда в настройках репозитория один раз включён Pages: Deploy from a branch, ветка `main`, папка `/` (корень). Файлы уже лежат в корне.
 
-Цены в карточках — запросы из объявлений 2025–2026 годов, не сделки. Фотографии взяты с Wikimedia Commons, авторы указаны на карточках.
+Цены в карточках — запросы из объявлений, не сделки. Фотографии с Wikimedia Commons, авторы указаны на карточках.
