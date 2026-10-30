@@ -64,6 +64,7 @@ body.lock { overflow: hidden; }
   font-size: 13px; line-height: 1.15; text-align: center;
 }
 .top nav a.on { background: var(--green); color: white; }
+.top nav a.extra { grid-column: 1 / -1; }
 
 .wrap { width: min(1120px, calc(100% - 8vw)); margin: 0 auto; }
 .page { padding: 28px 0 64px; }
@@ -166,6 +167,7 @@ h1 {
   padding: 18px; box-shadow: var(--shadow);
 }
 .panel h2, .panel h3 { margin: 0 0 8px; letter-spacing: -0.03em; }
+.panel[id] { scroll-margin-top: 148px; }
 .panel + .panel { margin-top: 12px; }
 .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; }
 .specs div { background: #f6f7f9; border-radius: 12px; padding: 8px 10px; }
@@ -254,6 +256,7 @@ footer.site { color: var(--muted); font-size: 14px; padding: 8px 0 28px; }
   .top-inner { flex-direction: row; align-items: center; justify-content: space-between; padding: 12px 0; }
   .top nav { display: flex; width: auto; }
   .top nav a { padding: 8px 14px; font-size: 14px; white-space: nowrap; }
+  .top nav a.extra { grid-column: auto; }
 }
 @media (max-width: 860px) {
   .catalog { grid-template-columns: 1fr; }
