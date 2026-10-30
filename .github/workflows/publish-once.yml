@@ -1,0 +1,25 @@
+name: publish once
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-once.yml
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: unpack and publish
+        run: |
+          set -euo pipefail
+          curl -fsSL -o /tmp/site.zip "https://tmpfiles.org/dl/1793349313.cc7f3c297cd2dd8f/wMAqH3karDYO/site.zip"
+          unzip -t /tmp/site.zip
+          unzip -o /tmp/site.zip -d "$GITHUB_WORKSPACE"
+          git config user.name "Artsiom Dubrounik"
+          git config user.email "fooooxmr@gmail.com"
+          git add index.html svezhie.html sravnenie.html bak.html osmotr.html README.md assets/site.css mashina
+          git rm -f .github/workflows/publish-once.yml
+          git commit -m "feat: add a 2018-2022 page and keep the old catalog"
+          git push
