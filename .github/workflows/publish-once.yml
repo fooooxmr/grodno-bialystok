@@ -1,0 +1,25 @@
+name: publish once
+on:
+  push:
+    paths:
+      - .github/workflows/publish-once.yml
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: unpack
+        run: |
+          set -euo pipefail
+          curl -fsSL -o site.zip "https://tmpfiles.org/dl/1793533145.7ef6e553a97b75d3/w4A9T4pSqLXA/site-ev.zip"
+          unzip -t site.zip
+          unzip -o site.zip -d "$GITHUB_WORKSPACE"
+          rm -f site.zip
+          git config user.name "Artsiom Dubrounik"
+          git config user.email "fooooxmr@gmail.com"
+          git add elektro.html index.html README.md mashina/ev-*.html
+          git rm -f .github/workflows/publish-once.yml
+          git commit -m "feat: expand the electric catalog with market photos and trims"
+          git push
